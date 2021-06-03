@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "VEHICLE")
-public class VehicleDto {
+public class Vehicle {
 	
 	public static final int CREW_MEMBER_START_VALUE=-1;
 	@Id
@@ -31,14 +31,17 @@ public class VehicleDto {
 	private float fuelConsumption; // per km
 	private int crewMember;
 	private int crewMemberCapacity;
-	private Integer facilityRefId;
 	
-	public VehicleDto() {
+	//for fire management
+	private Integer facilityRefId; //Always set to a caserne
+	private Integer fireId; //set to 0 for no fire. If not 0 the vehicule is affected to a fire.
+	
+	public Vehicle() {
 		crewMember= CREW_MEMBER_START_VALUE;
 		liquidType=LiquidType.ALL;
 	}
 
-	public VehicleDto(int id,double lon, double lat,VehicleType type, float efficiency,
+	public Vehicle(int id,double lon, double lat,VehicleType type, float efficiency,
 			LiquidType liquidType, float liquidQuantity, float liquidConsumption, float fuel,
 			float fuelConsumption, int crewMember, Integer facilityRefID) {
 		super();
@@ -55,6 +58,35 @@ public class VehicleDto {
 		this.crewMember = crewMember;
 		this.crewMemberCapacity =type.getVehicleCrewCapacity();
 		this.facilityRefId = facilityRefID;
+		this.fireId = 0;
+	}
+
+	public void returnToCaserne() {
+		this.fireId = 0;
+	}
+	
+	public void intervention(Integer fireId) {
+		this.fireId = fireId;
+	}
+	
+	public boolean isInIntervention() {
+		return this.fireId == 0;
+	}
+	
+	public Integer getFacilityRefId() {
+		return facilityRefId;
+	}
+
+	public void setFacilityRefId(Integer facilityRefId) {
+		this.facilityRefId = facilityRefId;
+	}
+
+	public Integer getCaserneId() {
+		return facilityRefId;
+	}
+
+	public Integer getFireId() {
+		return fireId;
 	}
 
 	public double getLon() {

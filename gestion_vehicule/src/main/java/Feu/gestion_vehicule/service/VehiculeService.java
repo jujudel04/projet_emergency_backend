@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Feu.gestion_vehicule.model.VehicleDto;
+import Feu.gestion_vehicule.model.Vehicle;
 import Feu.gestion_vehicule.repository.VehiculeRepository;
 
 @Service
@@ -20,20 +20,28 @@ public class VehiculeService {
 		
 	}
 	
-	public List<VehicleDto> getAllVehicules() {
-		List<VehicleDto> result = new ArrayList<VehicleDto>();
+	public List<Vehicle> getAllVehicules() {
+		List<Vehicle> result = new ArrayList<Vehicle>();
 		vehiculerepository.findAll().forEach(result::add);
 		return result;
 	}
-	public VehicleDto getVehicule(Integer id) {
-		Optional<VehicleDto> hOpt = vehiculerepository.findById(id);
+	public Vehicle getVehicule(Integer id) {
+		Optional<Vehicle> hOpt = vehiculerepository.findById(id);
 		if (hOpt.isPresent()) {
 			return hOpt.get();
 		}
 		return null;
 	}
 	
-	public void save(VehicleDto h) {
+	public List<Vehicle> getVehiculeListOnFire(Integer fireId) {
+		return vehiculerepository.findByFireId(fireId);
+	}
+	
+	public List<Vehicle> getVehiculeInCaserne(Integer carserneId) {
+		return vehiculerepository.findByFacilityRefId(carserneId);
+	}
+	
+	public void save(Vehicle h) {
 		vehiculerepository.save(h);
 	}
 

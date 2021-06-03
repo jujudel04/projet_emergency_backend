@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import Feu.gestion_vehicule.model.VehicleDto;
+import Feu.gestion_vehicule.model.Vehicle;
 import Feu.gestion_vehicule.repository.CaserneRepository;
 import Feu.gestion_vehicule.model.Caserne;
 
@@ -34,7 +34,7 @@ public class CaserneService {
 		caserneRepository.findAll().forEach(result::add);
 		return result;
 	}
-	public void addVehicule(VehicleDto h, Integer CaserneId) {
+	public void addVehicule(Vehicle h, Integer CaserneId) {
 		Caserne caserne = this.getCaserne(CaserneId);
 		if (caserne != null) {
 			caserne.addVehicule(caserne.getId());
