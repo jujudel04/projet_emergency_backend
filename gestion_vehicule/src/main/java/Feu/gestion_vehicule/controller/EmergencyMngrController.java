@@ -17,7 +17,7 @@ import Feu.gestion_vehicule.model.VehicleDto;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-public class CaserneController {
+public class EmergencyMngrController {
 	@Autowired
 	VehiculeService vehiculeService;
 	@Autowired

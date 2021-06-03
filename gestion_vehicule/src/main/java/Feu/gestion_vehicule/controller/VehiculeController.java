@@ -75,7 +75,7 @@ public class VehiculeController {
 	}
 
 	private FireDto getFire(Integer fireId) {
-		String fireurl = "http://localhost:8081/fire";
+		String fireurl = "http://localhost:8080/access/sim/fire";
 		RestTemplate rescardTemplate = new RestTemplate();
 		FireDto fire = rescardTemplate.getForObject(fireurl, FireDto.class, fireId);
 		return fire;
