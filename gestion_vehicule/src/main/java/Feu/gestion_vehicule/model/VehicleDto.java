@@ -1,6 +1,9 @@
 package Feu.gestion_vehicule.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,8 +18,12 @@ public class VehicleDto {
 	private Integer id;
 	private double lon;
 	private double lat;
+	@Enumerated(EnumType.STRING)
+	@Column(name="TYPE", length = 30)
 	private VehicleType type;
 	private float efficiency; // need all crew member to reach full efficiency value between 0 and 10
+	@Enumerated(EnumType.STRING)
+	@Column(name="LIQUID_TYPE", length = 30)
 	private LiquidType liquidType; // type of liquid effective to type of fire
 	private float liquidQuantity; // total quantity of liquid
 	private float liquidConsumption; // per second when use
@@ -24,7 +31,7 @@ public class VehicleDto {
 	private float fuelConsumption; // per km
 	private int crewMember;
 	private int crewMemberCapacity;
-	private Integer facilityRefID;
+	private Integer facilityRefId;
 	
 	public VehicleDto() {
 		crewMember= CREW_MEMBER_START_VALUE;
@@ -47,7 +54,7 @@ public class VehicleDto {
 		this.fuelConsumption = fuelConsumption;
 		this.crewMember = crewMember;
 		this.crewMemberCapacity =type.getVehicleCrewCapacity();
-		this.facilityRefID = facilityRefID;
+		this.facilityRefId = facilityRefID;
 	}
 
 	public double getLon() {
@@ -139,11 +146,11 @@ public class VehicleDto {
 	}
 
 	public Integer getFacilityRefID() {
-		return facilityRefID;
+		return facilityRefId;
 	}
 
 	public void setFacilityRefID(Integer facilityRefID) {
-		this.facilityRefID = facilityRefID;
+		this.facilityRefId = facilityRefID;
 	}
 
 	public Integer getId() {
