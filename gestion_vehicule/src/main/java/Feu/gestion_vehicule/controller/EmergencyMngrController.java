@@ -19,76 +19,63 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class EmergencyMngrController {
-	@Autowired
-	VehiculeService vehiculeService;
-	@Autowired
-	CaserneService caserneService;
-
-	@RequestMapping(method = RequestMethod.POST, value = "/vehicle")
-	public void createVehicule(@RequestBody Vehicle vehicule) {
-		vehiculeService.save(vehicule);
-	}
-
-	
-	  @RequestMapping(method = RequestMethod.PUT, value = "/vehicle/{id}") public
-	  void updateVehicule(@PathVariable Integer vehiculeId, @RequestBody Vehicle vehicule) { 
-	  Vehicle vehiculeModi = getVehicule(vehiculeId);
-	  vehiculeModi.setCrewMember(vehicule.getCrewMember());
-	  vehiculeModi.setEfficiency(vehicule.getEfficiency());
-	  vehiculeModi.setFuelConsumption(vehicule.getFuelConsumption());
-	  vehiculeModi.setLat(vehicule.getLat());
-	  vehiculeModi.setLon(vehicule.getLon());
-	  vehiculeModi.setLiquidConsumption(vehicule.getLiquidConsumption());
-	  vehiculeModi.setLiquidType(vehicule.getLiquidType());
-	  vehiculeModi.setType(vehicule.getType());
-	  
-	   // update // save 
-	   }
-	 
-
-	@RequestMapping(method = RequestMethod.GET, value = "/vehicle")
-	public List<Vehicle> getAllVehicule() {
-		List<Vehicle> vehiculeList = vehiculeService.getAllVehicules();
-		return vehiculeList;
-	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/vehicule/caserne/{caserneId}")
-	public List<Vehicle> getAllVehiculeCaserne(@PathVariable Integer caserneId) {
-		List<Vehicle> vehiculeList = vehiculeService.getAllVehicules();
-		List<Vehicle> caserneVehiculeList = new ArrayList<Vehicle>();
-		for (int i = 0; i < vehiculeList.size(); i++) {
-			Vehicle vehicule = vehiculeList.get(i);
-			if (vehicule.getFacilityRefID() == caserneId) {
-				caserneVehiculeList.add(vehicule);
-
-			}
-
-		}
-		return caserneVehiculeList;
-	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/vehicle/{id}")
-	public Vehicle getVehicule(@PathVariable Integer vehiculeId) {
-		Vehicle h = vehiculeService.getVehicule(vehiculeId);
-		return h;
-	}
-
-	@RequestMapping(method = RequestMethod.DELETE, value = "/vehicle/{id}")
-	public void deleteVehicule(@PathVariable Integer vehiculeId) {
-		Vehicle h = vehiculeService.getVehicule(vehiculeId);
-		vehiculeService.delete(h);
-	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/caserne/{id}")
-	public Caserne getCaserne(@PathVariable Integer caserneId) {
-		Caserne h = caserneService.getCaserne(caserneId);
-		return h;
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, value = "/caserne")
-	public List<Caserne> getAllCaserne() {
-		List<Caserne> caserneList = caserneService.getAllCaserne();
-		return caserneList;
-	}
+	/*
+	 * @Autowired VehiculeService vehiculeService;
+	 * 
+	 * @Autowired CaserneService caserneService;
+	 * 
+	 * @RequestMapping(method = RequestMethod.POST, value = "/vehicle") public void
+	 * createVehicule(@RequestBody Vehicle vehicule) {
+	 * vehiculeService.save(vehicule); }
+	 * 
+	 * 
+	 * @RequestMapping(method = RequestMethod.PUT, value = "/vehicle/{id}") public
+	 * void updateVehicule(@PathVariable Integer vehiculeId, @RequestBody Vehicle
+	 * vehicule) { Vehicle vehiculeModi = getVehicule(vehiculeId);
+	 * vehiculeModi.setCrewMember(vehicule.getCrewMember());
+	 * vehiculeModi.setEfficiency(vehicule.getEfficiency());
+	 * vehiculeModi.setFuelConsumption(vehicule.getFuelConsumption());
+	 * vehiculeModi.setLat(vehicule.getLat());
+	 * vehiculeModi.setLon(vehicule.getLon());
+	 * vehiculeModi.setLiquidConsumption(vehicule.getLiquidConsumption());
+	 * vehiculeModi.setLiquidType(vehicule.getLiquidType());
+	 * vehiculeModi.setType(vehicule.getType());
+	 * 
+	 * // update // save }
+	 * 
+	 * 
+	 * @RequestMapping(method = RequestMethod.GET, value = "/vehicle") public
+	 * List<Vehicle> getAllVehicule() { List<Vehicle> vehiculeList =
+	 * vehiculeService.getAllVehicules(); return vehiculeList; }
+	 * 
+	 * @RequestMapping(method = RequestMethod.GET, value =
+	 * "/vehicule/caserne/{caserneId}") public List<Vehicle>
+	 * getAllVehiculeCaserne(@PathVariable Integer caserneId) { List<Vehicle>
+	 * vehiculeList = vehiculeService.getAllVehicules(); List<Vehicle>
+	 * caserneVehiculeList = new ArrayList<Vehicle>(); for (int i = 0; i <
+	 * vehiculeList.size(); i++) { Vehicle vehicule = vehiculeList.get(i); if
+	 * (vehicule.getFacilityRefID() == caserneId) {
+	 * caserneVehiculeList.add(vehicule);
+	 * 
+	 * }
+	 * 
+	 * } return caserneVehiculeList; }
+	 * 
+	 * @RequestMapping(method = RequestMethod.GET, value = "/vehicle/{id}") public
+	 * Vehicle getVehicule(@PathVariable Integer vehiculeId) { Vehicle h =
+	 * vehiculeService.getVehicule(vehiculeId); return h; }
+	 * 
+	 * @RequestMapping(method = RequestMethod.DELETE, value = "/vehicle/{id}")
+	 * public void deleteVehicule(@PathVariable Integer vehiculeId) { Vehicle h =
+	 * vehiculeService.getVehicule(vehiculeId); vehiculeService.delete(h); }
+	 * 
+	 * @RequestMapping(method = RequestMethod.GET, value = "/caserne/{id}") public
+	 * Caserne getCaserne(@PathVariable Integer caserneId) { Caserne h =
+	 * caserneService.getCaserne(caserneId); return h; }
+	 * 
+	 * @RequestMapping(method = RequestMethod.PUT, value = "/caserne") public
+	 * List<Caserne> getAllCaserne() { List<Caserne> caserneList =
+	 * caserneService.getAllCaserne(); return caserneList; }
+	 */
 
 }

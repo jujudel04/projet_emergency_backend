@@ -108,7 +108,7 @@ public class FireMngrTask {
 	}
 
 	private FireDto[] getAllFire() {
-		String allfireurl = "http://localhost:8080/access/sim/fire";
+		String allfireurl = "http://localhost:8081/fire";
 		RestTemplate rescardTemplate = new RestTemplate();
 		ResponseEntity<FireDto[]> response = rescardTemplate.getForEntity(allfireurl, FireDto[].class);
 		FireDto[] list = response.getBody();
