@@ -26,28 +26,34 @@ public class EmergencyMngrController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/vehicle")
 	public void createVehicule(@RequestBody Vehicle vehicule) {
-		// TODO
+		vehiculeService.save(vehicule);
 	}
-	
-	@RequestMapping(method = RequestMethod.PUT, value = "/vehicle/{id}")
-	public void updateVehicule(@PathVariable Integer vehiculeId, @RequestBody Vehicle vehicule) {
-		VehicleDto vehicule = getVehicule(vehiculeId);
-		//update
-		//save
-	}
+
+	/*
+	 * @RequestMapping(method = RequestMethod.PUT, value = "/vehicle/{id}") public
+	 * void updateVehicule(@PathVariable Integer vehiculeId, @RequestBody Vehicle
+	 * vehicule) { Vehicle vehicule = getVehicule(vehiculeId); // update // save }
+	 */
 
 	@RequestMapping(method = RequestMethod.GET, value = "/vehicle")
 	public List<Vehicle> getAllVehicule() {
-		List<Integer> idList = vehiculeService.getVehiculeList();
-		List<Vehicle> vehiculeList = new ArrayList<Vehicle>();
-		for (Integer id : idList) {
-			Vehicle vehicule = vehiculeService.getVehicule(id);
-			if (vehicule != null) {
-				vehiculeList.add(vehicule);
+		List<Vehicle> vehiculeList = vehiculeService.getAllVehicules();
+		return vehiculeList;
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/vehicule/caserne/{caserneId}")
+	public List<Vehicle> getAllVehiculeCaserne(@PathVariable Integer caserneId) {
+		List<Vehicle> vehiculeList = vehiculeService.getAllVehicules();
+		List<Vehicle> caserneVehiculeList = new ArrayList<Vehicle>();
+		for (int i = 0; i < vehiculeList.size(); i++) {
+			Vehicle vehicule = vehiculeList.get(i);
+			if (vehicule.getFacilityRefID() == caserneId) {
+				caserneVehiculeList.add(vehicule);
+
 			}
-			return vehiculeList;
+
 		}
-		return null;
+		return caserneVehiculeList;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/vehicle/{id}")
@@ -57,9 +63,9 @@ public class EmergencyMngrController {
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/vehicle/{id}")
-	public void deleteVehicule(@PathVariable Integer vehiculeId, Caserne caserne) {
-		caserne.removeVehicule(vehiculeId);
-
+	public void deleteVehicule(@PathVariable Integer vehiculeId) {
+		Vehicle h = vehiculeService.getVehicule(vehiculeId);
+		vehiculeService.delete(h);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/caserne/{id}")
@@ -73,7 +79,5 @@ public class EmergencyMngrController {
 		List<Caserne> caserneList = caserneService.getAllCaserne();
 		return caserneList;
 	}
-
-
 
 }

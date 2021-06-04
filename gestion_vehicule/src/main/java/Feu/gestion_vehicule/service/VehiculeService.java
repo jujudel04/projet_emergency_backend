@@ -44,5 +44,7 @@ public class VehiculeService {
 	public void save(Vehicle h) {
 		vehiculerepository.save(h);
 	}
-
+	public void delete(Vehicle h) {
+		vehiculerepository.delete(h);
+	}
 }
