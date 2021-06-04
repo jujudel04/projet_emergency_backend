@@ -3,8 +3,7 @@ package Feu.gestion_vehicule.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+
 
 public enum LiquidType {
 	//https://www.seton.fr/quel-extincteur-pour-quel-feu.html

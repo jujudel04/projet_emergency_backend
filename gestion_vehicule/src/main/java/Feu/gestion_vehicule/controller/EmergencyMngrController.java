@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,11 +29,22 @@ public class EmergencyMngrController {
 		vehiculeService.save(vehicule);
 	}
 
-	/*
-	 * @RequestMapping(method = RequestMethod.PUT, value = "/vehicle/{id}") public
-	 * void updateVehicule(@PathVariable Integer vehiculeId, @RequestBody Vehicle
-	 * vehicule) { Vehicle vehicule = getVehicule(vehiculeId); // update // save }
-	 */
+	
+	  @RequestMapping(method = RequestMethod.PUT, value = "/vehicle/{id}") public
+	  void updateVehicule(@PathVariable Integer vehiculeId, @RequestBody Vehicle vehicule) { 
+	  Vehicle vehiculeModi = getVehicule(vehiculeId);
+	  vehiculeModi.setCrewMember(vehicule.getCrewMember());
+	  vehiculeModi.setEfficiency(vehicule.getEfficiency());
+	  vehiculeModi.setFuelConsumption(vehicule.getFuelConsumption());
+	  vehiculeModi.setLat(vehicule.getLat());
+	  vehiculeModi.setLon(vehicule.getLon());
+	  vehiculeModi.setLiquidConsumption(vehicule.getLiquidConsumption());
+	  vehiculeModi.setLiquidType(vehicule.getLiquidType());
+	  vehiculeModi.setType(vehicule.getType());
+	  
+	   // update // save 
+	   }
+	 
 
 	@RequestMapping(method = RequestMethod.GET, value = "/vehicle")
 	public List<Vehicle> getAllVehicule() {
