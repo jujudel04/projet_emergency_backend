@@ -14,12 +14,9 @@ import Feu.gestion_vehicule.model.Caserne;
 public class CaserneService {
 	@Autowired
 	CaserneRepository caserneRepository;
-	CaserneService(){
-		
-	}
-		
-	public void saveVehicule(Caserne h) {
-		caserneRepository.save(h);
+
+	CaserneService() {
+
 	}
 
 	public Caserne getCaserne(int id) {
@@ -29,10 +26,11 @@ public class CaserneService {
 		}
 		return null;
 	}
+
 	public List<Caserne> getAllCaserne() {
 		List<Caserne> result = new ArrayList<Caserne>();
 		caserneRepository.findAll().forEach(result::add);
 		return result;
 	}
-	
+
 }

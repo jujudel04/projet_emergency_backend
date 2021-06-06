@@ -1,6 +1,6 @@
-package Feu.gestion_vehicule.model;
+package Feu.gestion_vehicule.service.dto;
 
-public enum VehicleType {
+public enum VehicleTypeDto {
 	//https://lemonbin.com/types-of-fire-trucks/
 	CAR(2,2),
 	FIRE_ENGINE(6,6),
@@ -12,7 +12,7 @@ public enum VehicleType {
 	private int spaceUsedInFacility;
 	private int vehicleCrewCapacity;
 	
-	private VehicleType(int spaceUsedInFacility,int vehicleCrewCapacity) {
+	private VehicleTypeDto(int spaceUsedInFacility,int vehicleCrewCapacity) {
 		this.spaceUsedInFacility=spaceUsedInFacility;
 		this.vehicleCrewCapacity=vehicleCrewCapacity;
 	}

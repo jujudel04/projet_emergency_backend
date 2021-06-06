@@ -1,48 +1,29 @@
-package Feu.gestion_vehicule.model;
+package Feu.gestion_vehicule.service.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "VEHICLE")
-public class Vehicle {
+public class VehicleDto {
 	
 	public static final int CREW_MEMBER_START_VALUE=-1;
-	@Id
-	@GeneratedValue
 	private Integer id;
 	private double lon;
 	private double lat;
-	@Enumerated(EnumType.STRING)
-	@Column(name="TYPE", length = 30)
-	private VehicleType type;
+	private VehicleTypeDto type;
 	private float efficiency; // need all crew member to reach full efficiency value between 0 and 10
-	@Enumerated(EnumType.STRING)
-	@Column(name="LIQUID_TYPE", length = 30)
-	private LiquidType liquidType; // type of liquid effective to type of fire
+	private LiquidTypeDto liquidType; // type of liquid effective to type of fire
 	private float liquidQuantity; // total quantity of liquid
 	private float liquidConsumption; // per second when use
 	private float fuel;		// total quantity of fuel
 	private float fuelConsumption; // per km
 	private int crewMember;
 	private int crewMemberCapacity;
-	
-	//for fire management
 	private Integer facilityRefId; //Always set to a caserne
-	private Integer fireId; //set to 0 for no fire. If not 0 the vehicule is affected to a fire.
 	
-	public Vehicle() {
+	public VehicleDto() {
 		crewMember= CREW_MEMBER_START_VALUE;
-		liquidType=LiquidType.ALL;
+		liquidType=LiquidTypeDto.ALL;
 	}
 
-	public Vehicle(int id,double lon, double lat,VehicleType type, float efficiency,
-			LiquidType liquidType, float liquidQuantity, float liquidConsumption, float fuel,
+	public VehicleDto(int id,double lon, double lat,VehicleTypeDto type, float efficiency,
+			LiquidTypeDto liquidType, float liquidQuantity, float liquidConsumption, float fuel,
 			float fuelConsumption, int crewMember, Integer facilityRefID) {
 		super();
 		this.id=id;
@@ -58,19 +39,6 @@ public class Vehicle {
 		this.crewMember = crewMember;
 		this.crewMemberCapacity =type.getVehicleCrewCapacity();
 		this.facilityRefId = facilityRefID;
-		this.fireId = 0;
-	}
-
-	public void returnToCaserne() {
-		this.fireId = 0;
-	}
-	
-	public void intervention(Integer fireId) {
-		this.fireId = fireId;
-	}
-	
-	public boolean isInIntervention() {
-		return this.fireId == 0;
 	}
 	
 	public Integer getFacilityRefId() {
@@ -79,14 +47,6 @@ public class Vehicle {
 
 	public void setFacilityRefId(Integer facilityRefId) {
 		this.facilityRefId = facilityRefId;
-	}
-
-	public Integer getCaserneId() {
-		return facilityRefId;
-	}
-
-	public Integer getFireId() {
-		return fireId;
 	}
 
 	public double getLon() {
@@ -105,11 +65,11 @@ public class Vehicle {
 		this.lat = lat;
 	}
 
-	public VehicleType getType() {
+	public VehicleTypeDto getType() {
 		return type;
 	}
 
-	public void setType(VehicleType type) {
+	public void setType(VehicleTypeDto type) {
 		this.type = type;
 	}
 
@@ -121,11 +81,11 @@ public class Vehicle {
 		this.efficiency = efficiency;
 	}
 
-	public LiquidType getLiquidType() {
+	public LiquidTypeDto getLiquidType() {
 		return liquidType;
 	}
 
-	public void setLiquidType(LiquidType liquidType) {
+	public void setLiquidType(LiquidTypeDto liquidType) {
 		this.liquidType = liquidType;
 	}
 
