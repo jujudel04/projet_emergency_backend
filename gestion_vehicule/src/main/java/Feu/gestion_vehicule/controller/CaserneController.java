@@ -25,7 +25,7 @@ public class CaserneController {
 		return h;
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/caserne")
+	@RequestMapping(method = RequestMethod.GET, value = "/caserne")
 	public List<Caserne> getAllCaserne() {
 		List<Caserne> caserneList = caserneService.getAllCaserne();
 		return caserneList;

@@ -28,7 +28,7 @@ public class VehiculeService {
 	public VehicleDto getVehicule(Integer id) {
 		String VehiculeUrl = "http://localhost:8081/vehicle/{id}";
 		RestTemplate rescardTemplate = new RestTemplate();
-		ResponseEntity<VehicleDto> response = rescardTemplate.getForEntity(VehiculeUrl, VehicleDto.class);
+		ResponseEntity<VehicleDto> response = rescardTemplate.getForEntity(VehiculeUrl, VehicleDto.class,id);
 		VehicleDto vehicule = response.getBody();
 		return vehicule;
 	}

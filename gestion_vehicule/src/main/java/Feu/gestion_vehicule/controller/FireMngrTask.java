@@ -35,11 +35,11 @@ public class FireMngrTask {
 	CaserneService caserneservice;
 
 	// fire task management
-	@Scheduled(fixedRate = 1000)
+	@Scheduled(fixedRate = 100)
 	public void manageFire() {
 		//first update managed vehicle
 		fireService.updateVehicleList();
-		
+		fireService.moveVehicule();
 		// get all fire with Rest call
 		FireDto[] fireList = fireService.getAllFire();
 		List<FireDto> newfireList = new ArrayList<FireDto>();
@@ -55,7 +55,7 @@ public class FireMngrTask {
 			FireDto fire = fireList[i];
 			if (fireService.isFireManaged(fire.getId())) {
 				// already managed fire
-				currentFire.remove(i);
+				currentFire.remove(fire.getId());
 			} else {
 				// new fire
 				newfireList.add(fire);
