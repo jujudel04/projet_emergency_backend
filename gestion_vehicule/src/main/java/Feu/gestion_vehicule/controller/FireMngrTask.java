@@ -35,7 +35,7 @@ public class FireMngrTask {
 	CaserneService caserneservice;
 
 	// fire task management
-	@Scheduled(fixedRate = 100)
+	@Scheduled(fixedRate = 1000)
 	public void manageFire() {
 		//first update managed vehicle
 		fireService.updateVehicleList();
